@@ -1,0 +1,37 @@
+body {
+  margin: 0;
+  padding: 0;
+}
+
+img {
+  max-width: 100%;
+}
+
+button {
+  border: 0;
+  outline: 0;
+  background: none;
+  cursor: pointer;
+}
+
+.btn-primary {
+  background: #00aaff;
+  color: #fff;
+  border-radius: 3px;
+  padding: 0.5em 1em;
+  font-size: 14px;
+  font-weight: bold;
+  border: 1px solid #00aaff;
+  transition: all 0.2s ease-in-out;
+}
+
+.btn-orange {
+  background: #ffa500;
+  color: #fff;
+  border-radius: 3px;
+  padding: 0.5em 1em;
+  font-size: 14px;
+  font-weight: bold;
+  border: 1px solid #ffa500;
+  transition: all 0.2s ease-in-out;
+}
