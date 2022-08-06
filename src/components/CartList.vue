@@ -1,5 +1,5 @@
 <script setup>
-import { onMounted, reactive, computed } from 'vue'
+import { reactive, computed } from 'vue'
 import { useStore } from '../store'
 
 const store = useStore()
@@ -9,18 +9,18 @@ const state = reactive({
 })
 
 const filteredProduct = computed(() => {
-  return store.list.filter((product) => {
+  return store.cart.filter((product) => {
     return product.name.toLowerCase().includes(state.search.toLowerCase())
   })
 })
 
-const addToCart = (product) => {
-  store.addToCart(product)
+const increaseQuantity = (productId) => {
+  store.increaseQuantity(productId)
 }
 
-onMounted(() => {
-  store.fetchProductList()
-})
+const decreaseQuantity = (productId) => {
+  store.decreaseQuantity(productId)
+}
 </script>
 
 <template>
@@ -41,7 +41,11 @@ onMounted(() => {
               <span class="product-price">
                 {{ product.price }} {{ product.currency === 'TRY' ? 'TL' : product.currency }}
               </span>
-              <button class="btn-orange" @click="addToCart(product)">Add to cart</button>
+              <div class="increase-decrease">
+                <button class="btn-danger" @click="decreaseQuantity(product.id)">-</button>
+                <input type="number" v-model="product.quantity" />
+                <button class="btn-orange" @click="increaseQuantity(product.id)">+</button>
+              </div>
             </div>
           </div>
         </li>
@@ -86,5 +90,18 @@ onMounted(() => {
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+
+.increase-decrease {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.increase-decrease input {
+  width: 30px;
+  text-align: center;
+  border: none;
+  padding: 0.5em;
 }
 </style>

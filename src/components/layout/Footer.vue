@@ -1,5 +1,5 @@
 <template>
   <footer>
-    <p>&copy; {{ new Date().getFullYear() }}</p>
+    <p>Follow me on <a href="https://github.com/gayret">GitHub</a></p>
   </footer>
 </template>
