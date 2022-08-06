@@ -3,18 +3,23 @@ import request from '../utils/request'
 export const useStore = defineStore('store', {
   state: () => ({
     list: [],
+    loadingList: true,
+    cart: [],
   }),
-  // getters: {
-  //   double: (state) => state.count * 2,
-  // },
+
   actions: {
     fetchProductList() {
       request({
         method: 'GET',
         endpoint: 'listing',
-      }).then((data) => {
-        this.list = data
+      }).then((res) => {
+        this.list = res
+        this.loadingList = false
       })
+    },
+
+    addToCart(product) {
+      this.cart.push(product)
     },
   },
 })
