@@ -6,6 +6,14 @@ const emit = defineEmits(['close'])
 const close = () => {
   emit('close')
 }
+
+const increaseQuantity = (productId) => {
+  store.increaseQuantity(productId)
+}
+
+const decreaseQuantity = (productId) => {
+  store.decreaseQuantity(productId)
+}
 </script>
 
 <template>

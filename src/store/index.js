@@ -45,12 +45,13 @@ export const useStore = defineStore('store', {
     },
 
     decreaseQuantity(productId) {
-      this.cart.find((item) => item.id === productId).quantity--
       if (this.cart.find((item) => item.id === productId).quantity === 0) {
         this.cart.splice(
           this.cart.findIndex((item) => item.id === productId),
           1
         )
+      } else {
+        this.cart.find((item) => item.id === productId).quantity--
       }
     },
   },
