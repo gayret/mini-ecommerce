@@ -45,7 +45,7 @@ export const useStore = defineStore('store', {
     },
 
     decreaseQuantity(productId) {
-      if (this.cart.find((item) => item.id === productId).quantity === 0) {
+      if (this.cart.find((item) => item.id === productId).quantity === 1) {
         this.cart.splice(
           this.cart.findIndex((item) => item.id === productId),
           1
@@ -53,6 +53,13 @@ export const useStore = defineStore('store', {
       } else {
         this.cart.find((item) => item.id === productId).quantity--
       }
+    },
+
+    removeToCart(productId) {
+      this.cart.splice(
+        this.cart.findIndex((item) => item.id === productId),
+        1
+      )
     },
   },
 })

@@ -1,11 +1,17 @@
 <script setup>
-import { reactive } from 'vue'
+import { reactive, computed } from 'vue'
 import CartExcerpt from '../CartExcerpt.vue'
 import { useStore } from '../../store'
+import { useRoute } from 'vue-router'
 const store = useStore()
+const route = useRoute()
 
 const state = reactive({
   visibleCartExcerpt: true,
+})
+
+const isVisibleCartExcerpt = computed(() => {
+  return state.visibleCartExcerpt && store.cart.length > 0 && route.name !== 'Cart'
 })
 </script>
 
@@ -28,10 +34,7 @@ const state = reactive({
         {{ store.cart.length }}
       </span>
 
-      <CartExcerpt
-        @close="state.visibleCartExcerpt = false"
-        v-if="state.visibleCartExcerpt && store.cart.length > 0"
-      />
+      <CartExcerpt @close="state.visibleCartExcerpt = false" v-if="isVisibleCartExcerpt" />
     </div>
   </header>
 </template>
@@ -52,5 +55,12 @@ header {
 
 .cart {
   position: relative;
+}
+
+ul.menu {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1em;
 }
 </style>

@@ -63,6 +63,7 @@ onMounted(() => {
 .product-list ul li {
   padding: 1em;
   box-shadow: 0 0 3px lightgray;
+  background-color: #fff;
 }
 
 .product-image {

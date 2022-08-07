@@ -1,6 +1,17 @@
+:root {
+  --color-primary: #00a0e9;
+  --color-secondary: #ffc107;
+  --color-warning: #ffc107;
+  --color-danger: #ff3547;
+  --color-success: #00a0e9;
+
+  --color-bg: #fafafa;
+}
+
 body {
   margin: 0;
   padding: 0;
+  background-color: var(--color-bg);
 }
 
 img {
@@ -26,7 +37,7 @@ button {
 }
 
 .btn-orange {
-  background: #ffa500;
+  background: #fb641b;
   color: #fff;
   border-radius: 3px;
   padding: 0.5em 1em;
@@ -45,6 +56,27 @@ button {
   font-weight: bold;
   border: 1px solid #ff0000;
   transition: all 0.2s ease-in-out;
+}
+
+.btn-increase-decrease {
+  border-radius: 50%;
+  padding: 0.7em 1em;
+  font-size: 14px;
+  font-weight: bold;
+  transition: all 0.2s ease-in-out;
+  box-shadow: 0 0 2px #222;
+  color: #222;
+}
+
+.text-increase-decrease {
+  font-size: 14px;
+  font-weight: bold;
+  color: #222;
+  border: none;
+  padding-inline: 0.5em;
+  box-shadow: 0 0 2px #222;
+  border-radius: 0.3em;
+  width: 50px;
 }
 
 .badge {

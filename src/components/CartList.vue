@@ -21,6 +21,10 @@ const increaseQuantity = (productId) => {
 const decreaseQuantity = (productId) => {
   store.decreaseQuantity(productId)
 }
+
+const removeToCart = (productId) => {
+  store.removeToCart(productId)
+}
 </script>
 
 <template>
@@ -31,22 +35,26 @@ const decreaseQuantity = (productId) => {
         <input v-model="state.search" type="search" placeholder="Search Product" />
       </div>
       <ul>
-        <li class="product" v-for="product in filteredProduct" :key="product.id">
-          <div class="product-image">
-            <img :src="product.image" :alt="product.name" />
-          </div>
-          <div class="product-details">
-            <h2 class="product-title">{{ product.name }}</h2>
-            <div class="action">
+        <li v-for="product in filteredProduct" :key="product.id">
+          <div class="product">
+            <div class="product-image">
+              <img :src="product.image" :alt="product.name" />
+            </div>
+            <div class="product-details">
+              <h2 class="product-title">{{ product.name }}</h2>
               <span class="product-price">
                 {{ product.price }} {{ product.currency === 'TRY' ? 'TL' : product.currency }}
               </span>
-              <div class="increase-decrease">
-                <button class="btn-danger" @click="decreaseQuantity(product.id)">-</button>
-                <input type="number" v-model="product.quantity" />
-                <button class="btn-orange" @click="increaseQuantity(product.id)">+</button>
-              </div>
             </div>
+          </div>
+          <div class="action">
+            <div class="increase-decrease">
+              <button class="btn-increase-decrease" @click="decreaseQuantity(product.id)">-</button>
+              <input class="text-increase-decrease" type="number" v-model="product.quantity" />
+              <button class="btn-increase-decrease" @click="increaseQuantity(product.id)">+</button>
+            </div>
+
+            <button class="btn-remove" @click="removeToCart(product.id)">REMOVE</button>
           </div>
         </li>
       </ul>
@@ -58,15 +66,17 @@ const decreaseQuantity = (productId) => {
 .product-list ul {
   list-style: none;
   padding: 0;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 250px));
-  gap: 1em;
-  place-content: flex-start;
 }
 
 .product-list ul li {
   padding: 1em;
   box-shadow: 0 0 3px lightgray;
+  background-color: #fff;
+}
+
+.product {
+  display: flex;
+  gap: 1em;
 }
 
 .product-image {
@@ -86,7 +96,7 @@ const decreaseQuantity = (productId) => {
   font-size: 1.2em;
 }
 
-.product-details .action {
+.action {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -94,8 +104,8 @@ const decreaseQuantity = (productId) => {
 
 .increase-decrease {
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  gap: 0.5em;
 }
 
 .increase-decrease input {

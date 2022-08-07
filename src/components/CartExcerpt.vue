@@ -36,18 +36,15 @@ const decreaseQuantity = (productId) => {
             <span class="product-price">
               {{ product.price }} {{ product.currency === 'TRY' ? 'TL' : product.currency }}
             </span>
-            <span class="quantity">
-              Quantity
-              {{ product.quantity }}
-            </span>
+            <span class="quantity"> (x{{ product.quantity }}) </span>
           </div>
         </div>
 
         <div class="product-details">
           <div class="increase-decrease">
-            <button class="btn-danger" @click="decreaseQuantity(product.id)">-</button>
-            <input type="number" v-model="product.quantity" />
-            <button class="btn-orange" @click="increaseQuantity(product.id)">+</button>
+            <button class="btn-increase-decrease" @click="decreaseQuantity(product.id)">-</button>
+            <input class="text-increase-decrease" type="number" v-model="product.quantity" />
+            <button class="btn-increase-decrease" @click="increaseQuantity(product.id)">+</button>
           </div>
         </div>
       </li>
@@ -95,6 +92,7 @@ const decreaseQuantity = (productId) => {
 
 .increase-decrease {
   display: flex;
+  gap: 1em;
   justify-content: space-between;
 }
 
