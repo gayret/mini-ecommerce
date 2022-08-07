@@ -7,7 +7,7 @@ const store = useStore()
 const route = useRoute()
 
 const state = reactive({
-  visibleCartExcerpt: true,
+  visibleCartExcerpt: false,
 })
 
 const isVisibleCartExcerpt = computed(() => {
@@ -18,23 +18,29 @@ const isVisibleCartExcerpt = computed(() => {
 <template>
   <header>
     <div>
-      <h1>Mini Ecommerce</h1>
+      <h2>Mini Ecommerce</h2>
       <nav>
         <ul class="menu">
           <li>
             <router-link to="/">Home</router-link>
-            <router-link to="/cart">Cart</router-link>
+          </li>
+          <li>
+            <router-link to="/cart">My Cart</router-link>
           </li>
         </ul>
       </nav>
     </div>
     <div class="cart">
       Cart
-      <span @mouseover="state.visibleCartExcerpt = true" class="badge">
+      <span v-if="store.cart.length > 0" @mouseover="state.visibleCartExcerpt = true" class="badge">
         {{ store.cart.length }}
       </span>
 
-      <CartExcerpt @close="state.visibleCartExcerpt = false" v-if="isVisibleCartExcerpt" />
+      <CartExcerpt
+        @pointerleave="state.visibleCartExcerpt = false"
+        @close="state.visibleCartExcerpt = false"
+        v-if="isVisibleCartExcerpt"
+      />
     </div>
   </header>
 </template>
@@ -44,6 +50,10 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+
+header h2 {
+  margin-bottom: 0;
 }
 
 .info {
@@ -57,9 +67,10 @@ header {
   position: relative;
 }
 
-ul.menu {
+.menu {
+  list-style: none;
+  padding: 0;
   display: flex;
-  justify-content: space-between;
   align-items: center;
   gap: 1em;
 }

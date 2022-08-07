@@ -1,7 +1,9 @@
 <script setup>
 import { useStore } from '../store'
+import { useRouter } from 'vue-router'
 const store = useStore()
 const emit = defineEmits(['close'])
+const router = useRouter()
 
 const close = () => {
   emit('close')
@@ -23,7 +25,7 @@ const decreaseQuantity = (productId) => {
     </div>
     <h4>My Cart</h4>
     <span>Total price: {{ store.totalPrice }}</span>
-    <button class="btn-orange" @click="store.checkout">Checkout</button>
+    <button class="btn-orange" @click="router.push({ name: 'Cart' })">Place Order</button>
     <ul>
       <li v-for="product in store.cart" :key="product.id">
         <div class="product-info">

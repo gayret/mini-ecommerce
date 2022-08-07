@@ -1,6 +1,7 @@
 <script setup>
 import { reactive, computed } from 'vue'
 import { useStore } from '../store'
+import Alert from '../components/Alert.vue'
 
 const store = useStore()
 
@@ -25,6 +26,10 @@ const decreaseQuantity = (productId) => {
 const removeToCart = (productId) => {
   store.removeToCart(productId)
 }
+
+const order = () => {
+  store.order()
+}
 </script>
 
 <template>
@@ -36,28 +41,37 @@ const removeToCart = (productId) => {
       </div>
       <ul>
         <li v-for="product in filteredProduct" :key="product.id">
-          <div class="product">
+          <div :class="{ 'low-stock': product.id === 3 }" class="product">
             <div class="product-image">
               <img :src="product.image" :alt="product.name" />
             </div>
             <div class="product-details">
               <h2 class="product-title">{{ product.name }}</h2>
-              <span class="product-price">
+              <strong class="product-price">
                 {{ product.price }} {{ product.currency === 'TRY' ? 'TL' : product.currency }}
-              </span>
+              </strong>
             </div>
           </div>
           <div class="action">
-            <div class="increase-decrease">
+            <div class="increase-decrease" v-if="product.id !== 3">
               <button class="btn-increase-decrease" @click="decreaseQuantity(product.id)">-</button>
               <input class="text-increase-decrease" type="number" v-model="product.quantity" />
               <button class="btn-increase-decrease" @click="increaseQuantity(product.id)">+</button>
             </div>
-
             <button class="btn-remove" @click="removeToCart(product.id)">REMOVE</button>
           </div>
         </li>
       </ul>
+      <div class="action">
+        <span>Total price: {{ store.totalPrice }}</span>
+        <Alert
+          :show="store.orderResponse.visible"
+          :type="store.orderResponse.status"
+          :title="store.orderResponse.status"
+          :message="store.orderResponse.message"
+        />
+        <button class="btn-orange" @click="order">Place Order</button>
+      </div>
     </div>
   </div>
 </template>
@@ -100,6 +114,7 @@ const removeToCart = (productId) => {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  position: relative;
 }
 
 .increase-decrease {

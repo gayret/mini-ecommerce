@@ -5,6 +5,7 @@ export const useStore = defineStore('store', {
     list: [],
     loadingList: true,
     cart: [],
+    orderResponse: {},
   }),
 
   getters: {
@@ -60,6 +61,35 @@ export const useStore = defineStore('store', {
         this.cart.findIndex((item) => item.id === productId),
         1
       )
+    },
+
+    order() {
+      let order = []
+      this.cart.map((product) => {
+        order.push({
+          id: product.id,
+          amount: product.price,
+        })
+      })
+      request({
+        method: 'POST',
+        endpoint: 'order',
+        data: order,
+      }).then((res) => {
+        if (res.status === 'success') {
+          this.orderResponse.status = res.status.toUpperCase()
+          this.orderResponse.message = res.message
+          this.orderResponse.visible = true
+          setTimeout(() => {
+            this.orderResponse.visible = false
+            this.cart = []
+          }, 3000)
+        } else {
+          this.orderResponse.status = res.status.toUpperCase()
+          this.orderResponse.message = res.message + ' please remove sold out items. And try again.'
+          this.orderResponse.visible = true
+        }
+      })
     },
   },
 })
