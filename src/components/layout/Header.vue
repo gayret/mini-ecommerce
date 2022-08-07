@@ -11,7 +11,7 @@ const state = reactive({
 })
 
 const isVisibleCartExcerpt = computed(() => {
-  return state.visibleCartExcerpt && store.cart.length > 0 && route.name !== 'Cart'
+  return state.visibleCartExcerpt && store.cart.length > 0
 })
 </script>
 
@@ -30,7 +30,7 @@ const isVisibleCartExcerpt = computed(() => {
         </ul>
       </nav>
     </div>
-    <div class="cart">
+    <div class="cart" v-if="route.name !== 'Cart'">
       Cart
       <span v-if="store.cart.length > 0" @mouseover="state.visibleCartExcerpt = true" class="badge">
         {{ store.cart.length }}

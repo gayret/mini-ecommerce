@@ -1,6 +1,9 @@
 <script setup>
 import { onMounted, reactive, computed } from 'vue'
 import { useStore } from '../store'
+import { useRouter } from 'vue-router'
+
+const router = useRouter()
 
 const store = useStore()
 
@@ -16,6 +19,7 @@ const filteredProduct = computed(() => {
 
 const addToCart = (product) => {
   store.addToCart(product)
+  router.push({ name: 'Cart' })
 }
 
 onMounted(() => {
@@ -54,8 +58,9 @@ onMounted(() => {
 .product-list ul {
   list-style: none;
   padding: 0;
+  margin-inline: auto;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 250px));
+  grid-template-columns: repeat(auto-fit, minmax(200px, 375px));
   gap: 1em;
   place-content: flex-start;
 }

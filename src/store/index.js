@@ -16,6 +16,7 @@ export const useStore = defineStore('store', {
 
   actions: {
     fetchProductList() {
+      this.loadingList = true
       this.list = []
       request({
         method: 'GET',
