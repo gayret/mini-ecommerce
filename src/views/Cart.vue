@@ -8,7 +8,9 @@ const store = useStore()
 
 <template>
   <Layout>
-    <h1>My Cart ({{ store.cart.length }})</h1>
+    <h1>
+      My Cart <span v-if="store.cart.length > 0">({{ store.cart.length }})</span>
+    </h1>
     <CartList v-if="store.cart.length" />
     <div v-else class="cart-is-empty">
       <h3>Your cart is empty.</h3>

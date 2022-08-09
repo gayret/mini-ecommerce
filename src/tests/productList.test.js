@@ -1,9 +1,25 @@
-import { test, expect } from 'vitest'
-import { shallowMount } from '@vue/test-utils'
-import ProductList from '../components/ProductList.vue'
+import { expect, describe, beforeEach, it } from 'vitest'
+import { setActivePinia, createPinia } from 'pinia'
+import { useStore } from '../store/index'
 
-// test('Have a Add to cart button', () => {
-//   const wrapper = shallowMount(ProductList)
-//   console.log('wrapper.find('product-list').exists()', wrapper.find('product-list').exists())
-//   expect(wrapper.find('product-list').exists())
-// })
+setActivePinia(createPinia())
+
+let store = null
+
+describe('Store', () => {
+  beforeEach(() => {
+    store = useStore()
+    store.fetchProductList()
+  })
+
+  it('addToCart', () => {
+    store.addToCart({
+      id: 1,
+      image: '',
+      name: 'test',
+      price: 0,
+      quantity: 1,
+    })
+    expect(store.cart.length).toBe(1)
+  })
+})

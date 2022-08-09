@@ -37,7 +37,7 @@ export const useStore = defineStore('store', {
     },
 
     addToCart(product) {
-      this.cart.find((item) => item.id === product.id)
+      return this.cart.find((item) => item.id === product.id)
         ? this.cart.find((item) => item.id === product.id).quantity++
         : this.cart.push(product)
     },
@@ -59,6 +59,10 @@ export const useStore = defineStore('store', {
         this.cart.findIndex((item) => item.id === productId),
         1
       )
+    },
+
+    removeAllCart() {
+      this.cart = []
     },
 
     order() {

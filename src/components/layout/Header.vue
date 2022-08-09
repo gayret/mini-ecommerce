@@ -74,4 +74,8 @@ header h2 {
   align-items: center;
   gap: 1em;
 }
+
+.router-link-active {
+  color: var(--color-link-active);
+}
 </style>
