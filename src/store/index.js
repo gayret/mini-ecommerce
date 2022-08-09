@@ -10,7 +10,7 @@ export const useStore = defineStore('store', {
 
   getters: {
     totalPrice(state) {
-      return state.cart.reduce((total, item) => total + item.price * item.quantity, 0)
+      return state.cart.reduce((total, item) => total + item.price * item.quantity, 0).toFixed(2)
     },
   },
 
@@ -48,10 +48,7 @@ export const useStore = defineStore('store', {
 
     decreaseQuantity(productId) {
       if (this.cart.find((item) => item.id === productId).quantity === 1) {
-        this.cart.splice(
-          this.cart.findIndex((item) => item.id === productId),
-          1
-        )
+        this.removeToCart(productId)
       } else {
         this.cart.find((item) => item.id === productId).quantity--
       }
@@ -89,6 +86,9 @@ export const useStore = defineStore('store', {
           this.orderResponse.status = res.status.toUpperCase()
           this.orderResponse.message = res.message + ' please remove sold out items. And try again.'
           this.orderResponse.visible = true
+          setTimeout(() => {
+            this.orderResponse.visible = false
+          }, 3000)
         }
       })
     },

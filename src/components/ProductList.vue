@@ -1,19 +1,15 @@
 <script setup>
-import { onMounted, reactive, computed } from 'vue'
+import { onMounted, ref, computed } from 'vue'
 import { useStore } from '../store'
 import { useRouter } from 'vue-router'
-
 const router = useRouter()
-
 const store = useStore()
 
-const state = reactive({
-  search: '',
-})
+const search = ref('')
 
 const filteredProduct = computed(() => {
   return store.list.filter((product) => {
-    return product.name.toLowerCase().includes(state.search.toLowerCase())
+    return product.name.toLowerCase().includes(search.value.toLowerCase())
   })
 })
 
@@ -32,9 +28,13 @@ onMounted(() => {
     <div v-if="store.loadingList" class="loading">Loading Products...</div>
     <div v-else class="products">
       <div class="filter">
-        <input v-model="state.search" type="search" placeholder="Search Product" />
+        <input v-model="search" type="search" placeholder="Search Product" />
       </div>
-      <ul>
+      <div v-if="filteredProduct.length === 0" class="not-found">
+        <h2>Products not found</h2>
+        <p>Try to search for another product</p>
+      </div>
+      <ul v-else>
         <li class="product" v-for="product in filteredProduct" :key="product.id">
           <div class="product-image">
             <img :src="product.image" :alt="product.name" />

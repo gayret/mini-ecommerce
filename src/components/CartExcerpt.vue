@@ -34,11 +34,13 @@ const decreaseQuantity = (productId) => {
           </div>
 
           <div class="text">
-            <h4 class="product-title">{{ product.name }}</h4>
+            <h4 class="product-title">
+              {{ product.name }}
+              <span class="quantity"> (x{{ product.quantity }}) </span>
+            </h4>
             <span class="product-price">
               {{ product.price }} {{ product.currency === 'TRY' ? 'TL' : product.currency }}
             </span>
-            <span class="quantity"> (x{{ product.quantity }}) </span>
           </div>
         </div>
 

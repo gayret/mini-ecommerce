@@ -12,5 +12,6 @@ footer {
   background-image: linear-gradient(to right, var(--color-bg), var(--color-gray), var(--color-bg));
   padding: 0.5em 1em;
   text-align: center;
+  font-size: 0.8em;
 }
 </style>

@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
 :root {
   --color-primary: #00a0e9;
   --color-secondary: #ffc107;
@@ -7,11 +9,13 @@
 
   --color-bg: #fafafa;
   --color-gray: #f5f5f5;
+  --color-link: #00a0e9;
 }
 
 body {
   margin: 0;
   padding: 0;
+  font-family: 'Roboto', sans-serif;
   background-color: var(--color-bg);
 }
 
@@ -24,6 +28,11 @@ button {
   outline: 0;
   background: none;
   cursor: pointer;
+}
+
+a {
+  text-decoration: none;
+  color: var(--color-link);
 }
 
 .btn-primary {

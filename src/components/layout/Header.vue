@@ -31,7 +31,7 @@ const isVisibleCartExcerpt = computed(() => {
       </nav>
     </div>
     <div class="cart" v-if="route.name !== 'Cart'">
-      Cart
+      <i class="ri-shopping-cart-2-line"></i>
       <span v-if="store.cart.length > 0" @mouseover="state.visibleCartExcerpt = true" class="badge">
         {{ store.cart.length }}
       </span>
