@@ -38,6 +38,12 @@ const order = () => {
       <div class="filter">
         <input v-model="state.search" type="search" placeholder="Search Product" />
       </div>
+      <div class="f-right">
+        <button v-if="store.cart.length > 0" @click="store.removeAllCart" class="btn-danger">
+          Clear Cart
+        </button>
+      </div>
+
       <ul>
         <li v-for="product in filteredProduct" :key="product.id">
           <div :class="{ 'low-stock': product.id === 3 }" class="product">
