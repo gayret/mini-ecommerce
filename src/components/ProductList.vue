@@ -45,7 +45,9 @@ onMounted(() => {
               <span class="product-price">
                 {{ product.price }} {{ product.currency === 'TRY' ? 'TL' : product.currency }}
               </span>
-              <button class="btn-orange" @click="addToCart(product)">Add to cart</button>
+              <button data-button="add-to-cart" class="btn-orange" @click="addToCart(product)">
+                Add to cart
+              </button>
             </div>
           </div>
         </li>

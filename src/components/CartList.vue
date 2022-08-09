@@ -31,7 +31,6 @@ const order = () => {
   store.order()
 }
 </script>
-
 <template>
   <div class="product-list">
     <div v-if="store.loadingList" class="loading">Loading Products...</div>

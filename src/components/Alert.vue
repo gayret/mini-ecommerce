@@ -1,5 +1,5 @@
 <script setup>
-const props = defineProps({
+let props = defineProps({
   title: {
     type: String,
     default: '',
@@ -20,9 +20,9 @@ const props = defineProps({
 </script>
 
 <template>
-  <div v-if="props.show" class="alert" :class="props.type">
+  <div v-if="props.show" class="alert" :class="props.type" data-component="alert">
     <h3>{{ props.title }}</h3>
-    <p>{{ props.message }}</p>
+    <p data-component="message">{{ props.message }}</p>
   </div>
 </template>
 

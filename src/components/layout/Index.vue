@@ -18,6 +18,7 @@ import Footer from './Footer.vue'
   min-height: 100vh;
   max-width: 1600px;
   margin-inline: auto;
+  padding: 0 1em;
   display: grid;
   grid-template-rows: max-content auto max-content;
 }
