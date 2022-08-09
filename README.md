@@ -2,6 +2,10 @@
 
 run
 
+`npm i`
+
+After installing the package, you can use the following command to run the application:
+
 `docker compose up`
 
 If you are need to install with detached, run

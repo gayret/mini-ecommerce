@@ -22,7 +22,7 @@ const isVisibleCartExcerpt = computed(() => {
       <nav>
         <ul class="menu">
           <li>
-            <router-link to="/">Home</router-link>
+            <router-link to="/"><i class="ri-home-line"></i> Home</router-link>
           </li>
           <li>
             <router-link to="/cart">My Cart</router-link>
@@ -31,7 +31,7 @@ const isVisibleCartExcerpt = computed(() => {
       </nav>
     </div>
     <div class="cart" v-if="route.name !== 'Cart'">
-      <i class="ri-shopping-cart-2-line"></i>
+      <i class="ri-shopping-cart-2-line"></i> Cart
       <span v-if="store.cart.length > 0" @mouseover="state.visibleCartExcerpt = true" class="badge">
         {{ store.cart.length }}
       </span>
