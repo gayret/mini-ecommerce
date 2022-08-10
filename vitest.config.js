@@ -3,7 +3,7 @@ import vue from '@vitejs/plugin-vue'
 
 export default defineConfig({
   test: {
-    environment: 'happy-dom',
+    hookTimeout: 1200000,
   },
   plugins: [vue()],
 })

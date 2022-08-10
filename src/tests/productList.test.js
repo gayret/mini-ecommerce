@@ -1,18 +1,17 @@
-import { expect, describe, beforeEach, it } from 'vitest'
+import { expect, describe, it, beforeEach } from 'vitest'
 import { setActivePinia, createPinia } from 'pinia'
 import { useStore } from '../store/index'
 
 setActivePinia(createPinia())
 
-let store = null
+const store = useStore()
 
 describe('Store', () => {
-  beforeEach(() => {
-    store = useStore()
-    store.fetchProductList()
+  beforeEach(async () => {
+    await store.fetchProductList()
   })
 
-  it('addToCart', () => {
+  it('Add a product to cart', () => {
     store.addToCart({
       id: 1,
       image: '',

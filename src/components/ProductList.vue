@@ -28,7 +28,12 @@ onMounted(() => {
     <div v-if="store.loadingList" class="loading">Loading Products...</div>
     <div v-else class="products">
       <div class="filter">
-        <input v-model="search" type="search" placeholder="Search Product" />
+        <input
+          data-component="search"
+          v-model="search"
+          type="search"
+          placeholder="Search Product"
+        />
       </div>
       <div v-if="filteredProduct.length === 0" class="not-found">
         <h2>Products not found</h2>

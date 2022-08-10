@@ -18,7 +18,7 @@ export const useStore = defineStore('store', {
     fetchProductList() {
       this.loadingList = true
       this.list = []
-      request({
+      return request({
         method: 'GET',
         endpoint: 'listing',
       }).then((res) => {
@@ -66,17 +66,17 @@ export const useStore = defineStore('store', {
     },
 
     order() {
-      let order = []
+      let orderedProducts = []
       this.cart.map((product) => {
-        order.push({
+        orderedProducts.push({
           id: product.id,
           amount: product.price,
         })
       })
-      request({
+      return request({
         method: 'POST',
         endpoint: 'order',
-        data: order,
+        data: orderedProducts,
       }).then((res) => {
         if (res.status === 'success') {
           this.orderResponse.status = res.status.toUpperCase()

@@ -2,7 +2,7 @@ import { test, expect } from 'vitest'
 import { shallowMount } from '@vue/test-utils'
 import Alert from '../components/Alert.vue'
 
-test('Show Alert Test', () => {
+test('Show Alert', () => {
   const wrapper = shallowMount(Alert, {
     propsData: {
       show: true,
