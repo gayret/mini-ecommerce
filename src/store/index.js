@@ -88,7 +88,7 @@ export const useStore = defineStore('store', {
           }, 3000)
         } else {
           this.orderResponse.status = res.status.toUpperCase()
-          this.orderResponse.message = res.message + ' please remove sold out items. And try again.'
+          this.orderResponse.message = res.message
           this.orderResponse.visible = true
           setTimeout(() => {
             this.orderResponse.visible = false

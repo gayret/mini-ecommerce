@@ -20,3 +20,13 @@ test('Check Alert Message', () => {
   })
   expect(wrapper.find('[data-component="message"]').text()).eq('Hello World')
 })
+
+test('Check Alert Not There', () => {
+  const wrapper = shallowMount(Alert, {
+    propsData: {
+      show: false,
+      message: 'Hello World',
+    },
+  })
+  expect(wrapper.find('[data-component="message"]').exists()).toEqual(false)
+})

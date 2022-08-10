@@ -2,6 +2,9 @@
 import { reactive, computed } from 'vue'
 import { useStore } from '../store'
 import Alert from '../components/Alert.vue'
+import { useRouter } from 'vue-router'
+
+const router = useRouter()
 
 const store = useStore()
 
@@ -29,6 +32,10 @@ const removeToCart = (productId) => {
 
 const order = () => {
   store.order()
+}
+
+const onContinueShopping = () => {
+  router.push('/')
 }
 </script>
 <template>
@@ -76,6 +83,9 @@ const order = () => {
           :message="store.orderResponse.message"
         />
         <button class="btn-orange" @click="order">Place Order</button>
+      </div>
+      <div class="d-right">
+        <button class="btn-primary" @click="onContinueShopping">Continue Shopping</button>
       </div>
     </div>
   </div>
